@@ -8,7 +8,8 @@ O principal objetivo deste desafio é exercitar as seguintes competências:
 •	Análise de Vulnerabilidade: Identificação de falhas de autenticação.
 •	Mitigação: Proposição de medidas de defesa e boas práticas de segurança.
 •	Documentação: Registro claro e estruturado de todo o processo técnico.
-⚙️ Configuração do Ambiente de Laboratório
+
+ Configuração do Ambiente de Laboratório
 Para garantir um ambiente de testes seguro e isolado, foram utilizadas duas máquinas virtuais interligadas por uma rede interna.
 1. Máquinas Virtuais (VMs)
 Função	Sistema Operacional/Aplicação	Endereço IP (Exemplo)	Usuário Padrão
@@ -17,7 +18,8 @@ Alvo	Metasploitable 2 (Inclui DVWA)	192.168.56.102	msfadmin / msfadmin
 2. Configuração de Rede
 Ambas as VMs foram configuradas no VirtualBox utilizando o modo Rede Interna (Host-only). Essa configuração assegura que o tráfego de rede gerado pelos testes de ataque permaneça isolado, sem afetar a rede local (doméstica/corporativa).
 •	Teste de Conectividade: Foi realizado um teste de ping a partir do Kali Linux para o Metasploitable 2 para confirmar que a comunicação entre as duas máquinas estava funcional.
-🚀 Execução dos Ataques de Força Bruta
+
+ Execução dos Ataques de Força Bruta
 Os testes de força bruta foram realizados utilizando o Medusa, uma ferramenta rápida, modular e paralela, ideal para ataques de login.
 1. Cenário: Força Bruta em Serviço FTP
 •	Objetivo: Tentar obter credenciais válidas para o serviço FTP do Metasploitable 2, que utiliza o vsftpd (Versão 2.3.4, conhecida por vulnerabilidades).
@@ -49,7 +51,8 @@ hydra -l admin -P /home/kali/Desktop/wordlists/dvwa_passwords.txt 192.168.56.102
 •	Resultado:
 o	Credencial Encontrada: admin:password
 •	Evidência: Link para a captura de tela do sucesso da automação no /images/dvwa_bruteforce.png.
-🛑 Recomendações de Mitigação de Ataques de Força Bruta
+
+ Recomendações de Mitigação de Ataques de Força Bruta
 A principal lição aprendida é que a força bruta só é eficaz contra sistemas mal configurados. A seguir, estão as recomendações de segurança (mitigação) para prevenir ou dificultar esses ataques nos serviços testados:
 Serviço	Vulnerabilidade Observada	Medidas de Mitigação (Prevenção)
 Geral	Credenciais fracas e padrão.	Política de Senhas Fortes: Exigir senhas longas, complexas e exclusivas. Desencorajar e auditar o uso de senhas comuns.
@@ -58,7 +61,8 @@ Web (DVWA)	Falta de proteção contra automação.	CAPTCHA e Tokens: Implementar
 Geral	Ausência de monitoramento.	Monitoramento e Alerta: Configurar sistemas de Intrusion Detection/Prevention System (IDS/IPS) e logs de autenticação para alertar a equipe de segurança sobre padrões de login incomuns (como muitas falhas em sequência).
 Geral	Serviços desnecessários abertos.	Princípio do Privilégio Mínimo: Desativar todos os serviços (FTP, SMB, etc.) que não são estritamente necessários no servidor.
 Geral	Tráfego em texto simples.	Criptografia: Garantir que a comunicação use protocolos criptografados (ex: SFTP em vez de FTP, HTTPS em vez de HTTP).
-🌟 Conclusão e Aprendizados
+
+ Conclusão e Aprendizados
 O desafio proporcionou uma visão prática da eficácia e da facilidade com que ferramentas de código aberto como o Medusa e o Hydra podem ser usadas para testar a segurança de sistemas. Fica evidente que a implementação de senhas fortes e o uso de rate limiting são as barreiras mais imediatas e eficazes contra ataques de força bruta.
 A documentação detalhada, além de ser um requisito, reforça o aprendizado ao obrigar a análise e a estruturação das etapas do teste de penetração.
 🔗 Recursos do Projeto
